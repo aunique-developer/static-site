@@ -4,10 +4,29 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>aadhunique.com</title>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script src="http://localhost:35729/livereload.js"></script>
-  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.3/css/all.css" integrity="sha384-Abg5LNBb2QDvX6Uf10x9z/6o6Z6MKbLRpW1a8LvPpSkJp7X/k1x8DvX9Q2Fsdn1Q" crossorigin="anonymous">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
+
+  <link rel="stylesheet" href="styles.css">
+
+  <script>
+    
+  //   function toggleMenu() {
+  // var menu = document.getElementById("mobile-menu");
+  // var closeButton = document.getElementById("close-button");
+
+  // if (menu.classList.contains("-translate-x-full")) {
+  //   menu.classList.remove("-translate-x-full");
+  //   menu.classList.add("translate-x-0");
+  //   closeButton.classList.add("opacity-100");
+  // } else {
+  //   menu.classList.add("-translate-x-full");
+  //   menu.classList.remove("translate-x-0");
+  //   closeButton.classList.remove("opacity-100");
+  // }
+}
+
+
+    </script>
 
 </head>
 <body>
@@ -20,72 +39,79 @@
           <img class="h-12 w-auto" src="./aalogo.png" alt="">
         </a>
       </div>
-      <div class="flex lg:hidden">
-        <button type="button" class="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-gray-700">
-          <span class="sr-only">Open main menu</span>
-          <!-- <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
-          </svg> -->
-          <img class="h-8 w-auto" src="./aalogo.png" alt="">
-        </button>
-      </div>
+      <!-- Mobile Menu Start -->
+     <!-- Mobile Menu Start -->
+<div class="flex lg:hidden">
+  <button onclick="toggleMenu()" type="button" class="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-gray-700">
+    <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
+      <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+    </svg>
+  </button>
+  <nav id="mobile-menu" class="fixed top-0 right-0 h-screen w-2/3 transform transition-transform ease-in-out duration-900 translate-x-full bg-white z-50">
+    <div class="flex justify-end px-4 py-2">
+      <button id="close-menu-btn" onclick="toggleMenu()" class="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-gray-700 text-3xl">&times;</button>
+    </div>
+    <div class="flex flex-col items-baseline px-4 py-12">
+      <a href="#about" onclick="toggleMenu()" class="text-sm font-semibold leading-6 text-gray-900">About</a>
+      <a href="#solutions" onclick="toggleMenu()" class="text-sm font-semibold leading-6 text-gray-900">Solutions</a>
+      <a href="#services" onclick="toggleMenu()" class="text-sm font-semibold leading-6 text-gray-900">Services</a>
+      <a href="#career" onclick="toggleMenu()" class="text-sm font-semibold leading-6 text-gray-900">Careers</a>
+      <a href="#contact" onclick="toggleMenu()" class="text-sm font-semibold leading-6 text-gray-900">Contact</a>
+    </div>
+  </nav>
+</div>
+<!-- Mobile Menu End -->
+
+<script>
+  function toggleMenu() {
+    const menu = document.getElementById("mobile-menu");
+    const menuBtn = document.querySelector('.flex button');
+    const closeBtn = document.getElementById("close-menu-btn");
+    if (menu.classList.contains("translate-x-full")) {
+      menu.classList.remove("translate-x-full");
+      menu.classList.add("translate-x-0");
+      menu.style.width = "25%";
+      closeBtn.style.display = "block";
+      menuBtn.style.display = "none";
+      alert('open');
+    } else {
+      menu.classList.add("translate-x-full");
+      menu.classList.remove("translate-x-0");
+      closeBtn.style.display = "none";
+      menuBtn.style.display = "block";
+    }
+  }
+</script>
+
+
+      <!-- Mobile Menu Start END -->
+
       <div class="hidden lg:flex lg:gap-x-12">
         <a href="#about" class="text-sm font-semibold leading-6 text-gray-900">About</a>
-        <a href="#" class="text-sm font-semibold leading-6 text-gray-900">Solutions</a>
+        <a href="#services" class="text-sm font-semibold leading-6 text-gray-900">Solutions</a>
         <a href="#services" class="text-sm font-semibold leading-6 text-gray-900">Services</a>
         <a href="#career" class="text-sm font-semibold leading-6 text-gray-900">Careers</a>
         <a href="#contact" class="text-sm font-semibold leading-6 text-gray-900">Contact</a>
-
       </div>
+      
       <!-- <div class="hidden lg:flex lg:flex-1 lg:justify-end">
         <a href="#" class="text-sm font-semibold leading-6 text-gray-900">Log in <span aria-hidden="true">&rarr;</span></a>
       </div> -->
+
     </nav>
     <div class="border-b border-gray-300"></div>
-    <!-- Mobile menu, show/hide based on menu open state. -->
-    <div class="lg:hidden" role="dialog" aria-modal="true">
-      <!-- Background backdrop, show/hide based on slide-over state. -->
-      <div class="fixed inset-0 z-50"></div>
-      <!-- <div class="fixed inset-y-0 right-0 z-50 w-full overflow-y-auto bg-white px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10">
-        <div class="flex items-center justify-between">
-          <a href="#" class="-m-1.5 p-1.5">
-            <span class="sr-only">Aadhunique.com</span>
-            
-            <img class="h-8 w-auto" src="./aalogo.png" alt="">
-          </a>
-          <button onclick="alert('h')" type="button" class="-m-2.5 rounded-md p-2.5 text-gray-700">
-            <span class="sr-only">Close menu</span>
-            <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
-            </svg>
-          </button>
-        </div>
-        <div class="mt-6 flow-root">
-          <div class="-my-6 divide-y divide-gray-500/10">
-            <div class="space-y-2 py-6">
-              <a href="#about" class="block text-sm font-semibold leading-6 text-gray-900">About</a>
-              <a href="#" class="block text-sm font-semibold leading-6 text-gray-900">Solutions</a>
-              <a href="#services" class="block text-sm font-semibold leading-6 text-gray-900">Services</a>
-              <a href="#career" class="block text-sm font-semibold leading-6 text-gray-900">Careers</a>
-              <a href="#contact" class="block text-sm font-semibold leading-6 text-gray-900">Contact</a>
-      
-            </div>
-          </div>
-        </div>
-      </div>
-       -->
-    </div>
+
   </header>
   <div class="bg-white py-24 sm:py-32">
-    <div class="mx-auto max-w-7xl px-6 lg:px-8">
-      <div class="mx-auto max-w-2xl lg:text-center">
+    <div class="mx-auto max-w-7xl px-6 lg:px-8 md:px-4">
+      <div class="mx-auto max-w-2xl lg:text-center md:text-center">
         <!-- <h2 class="text-base font-semibold leading-7 text-blue-900 sm:text-8xl">Deploy faster</h2> -->
-        <p class="mt-2 font-bold tracking-tight text-gray-900 text-6xl">
+        <p class="mt-2 font-bold tracking-tight text-gray-900 lg:text-6xl md:text-4xl sm:text-2xl">
           Technology Solutions <span class="bg-gradient-to-r from-blue-500 via-green-500 to-orange-500 text-transparent bg-clip-text">made simple and affordable </span> for Small Businesses
         </p>
         
-        <div class="mx-auto flex justify-center p-8">
-          <img class="h-64 w-auto" src="./aalogo.png" alt="">
+        <div class="mx-auto flex justify-center lg:p-8 md:p-4 sm:p-2">
+          <img class="lg:h-64 md:h-52 sm:h-32 w-auto" src="./aalogo.png" alt="">
         </div>
         <!-- <div class="flex justify-center mt-6">
           <a href="#services" class="px-4 py-2 text-white bg-blue-500 rounded hover:bg-blue-600 focus:outline-none focus:shadow-outline-blue">
@@ -208,7 +234,7 @@
       </div>
     </div>
 
-    <section id="contact" class="pt-8">
+    <section id="contact" class="pt-4">
       <div class="w-full max-w-lg mx-auto">
   
         <div class="mx-auto max-w-2xl sm:text-center">
@@ -268,8 +294,8 @@
           <div class="mx-auto max-w-7xl px-6 lg:px-8">
             
             <div class="mx-auto max-w-2xl sm:text-center">
-              <h2 class="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">Services.</h2>
-              <p class="mt-6 text-lg leading-8 text-gray-600">Explain what is Talent Aquisition Services</p>
+              <h2 class="text-4xl font-bold tracking-tight text-gray-900 sm:text-6xl"">Services.</h2>
+              <p class="mt-6 text-lg leading-8 text-gray-600">Detail of Services</p>
             </div>
 
             <div class="mx-auto mt-16 max-w-2xl rounded-3xl ring-1 ring-gray-200 sm:mt-20 lg:mx-0 lg:flex lg:max-w-none">
