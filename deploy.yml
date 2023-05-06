@@ -1,0 +1,21 @@
+name: Deploy to S3
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws-access-key-id: ${{ secrets.AKIAQY5YZM32NETJYLOL }}
+          aws-secret-access-key: ${{ secrets.Jjdb9ndk7J2IjqluVrYlleH9JqceMnutqAWzh8oc }}
+          aws-region: us-east-2
+      - name: Sync to S3
+        run: aws s3 sync . s3://www.aadhunique.com --delete
