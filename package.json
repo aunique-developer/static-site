@@ -1,0 +1,18 @@
+{
+  "name": "aa-static-site",
+  "version": "1.0.0",
+  "description": "deploy builds to static site and AWS S3",
+  "main": "tailwind.config.js",
+  "scripts": {
+    "test": "test",
+    "build": "gulp build",
+    "deploy": "npm-run-all build --parallel git-commit git-push",
+    "git-commit": "git add . && git commit -m 'Deploy changes' || true",
+    "git-push": "git push origin HEAD:main"
+  },
+  "author": "Sanjeev@aadhunique.com",
+  "license": "ISC",
+  "dependencies": {
+    "gulp": "^4.0.2"
+  }
+}
