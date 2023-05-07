@@ -8,7 +8,6 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
   <link rel="stylesheet" href="styles.css">
   <link rel="icon" type="image/x-icon" href="aalogo.ico">
-  <script src="https://www.google.com/recaptcha/api.js" async defer></script>
   </head>
 <body>
 
@@ -249,52 +248,27 @@
 
     <!-- contact us -->
     <section id="contact" class="pt-8">
+      <script src="https://www.google.com/recaptcha/api.js?render=6LcfPuolAAAAAAfz3K8UGu54jU9CapUQ-k5YDbLa"></script>
+
       <script>
+        const form = document.querySelector('form');
+        const submitBtn = document.querySelector('#submit-btn');
+        const tokenField = document.querySelector('#recaptcha-token');
 
-let form = "";
-document.addEventListener('DOMContentLoaded', function() {
-  // Your code here
-  const form = document.getElementById('contact-aa');
-
-
-        form.addEventListener('submit', (event) => {
+        submitBtn.addEventListener('click', async (event) => {
           event.preventDefault();
-          submitForm();
+          
+          const token = await grecaptcha.execute('6LcfPuolAAAAAAfz3K8UGu54jU9CapUQ-k5YDbLa', { action: 'submit' });
+          tokenField.value = token;
+          
+          const formData = new FormData(form);
+          
+          const response = await fetch('/contact', {
+            method: 'POST',
+            body: formData
+          });
         });
 
-      });
-
-        function submitForm() {
-          const name = document.querySelector('input[name="the_name"]').value;
-          const email = document.querySelector('input[name="email"]').value;
-          const message = document.querySelector('textarea[name="message"]').value;
-          const recaptchaResponse = grecaptcha.getResponse();
-
-          const submission = {
-            //name,
-            email,
-            message,
-            timestamp: new Date().toISOString()
-          };
-
-          fetch('https://contact-aa.firebaseio.com/form-submissions.json', {
-            method: 'POST',
-            body: JSON.stringify(submission)
-          })
-          .then(response => {
-            if (response.ok) {
-              console.log('Form submitted successfully');
-              // Add code to show success message to the user
-            } else {
-              console.error('Error submitting form');
-              // Add code to show error message to the user
-            }
-          })
-          .catch(error => {
-            console.error('Error submitting form:', error);
-            // Add code to show error message to the user
-          });
-        }
       </script>
       <div class="mx-auto mt-8 max-w-2xl sm:mt-20 lg:mt-24 lg:max-w-4xl">
         <h2 class="text-4xl font-bold tracking-tight text-gray-900 sm:text-6xl">Contact Us</h2>
@@ -303,7 +277,7 @@ document.addEventListener('DOMContentLoaded', function() {
         <div class="mx-auto max-w-2xl rounded-3xl ring-1 ring-gray-200 lg:mb-24 sm:mt-20 lg:mx-0 lg:flex lg:max-w-none">
           <div class="p-2 sm:p-10 lg:flex-auto">
 
-            <form id="contact-aa" action="https://docs.google.com/forms/d/e/1FAIpQLSfmEukUW2NdyG1JYqOSWcTyCczwysXVUFmlk59cph4IVgzJaQ/formResponse" method="POST">
+            <form id="contact-aa" action="" method="POST">
             
             
               <label for="email" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Email</label>
@@ -319,13 +293,14 @@ document.addEventListener('DOMContentLoaded', function() {
                 class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg shadow-sm border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"></textarea>
 
                 <br>
-                <div class="g-recaptcha" data-sitekey="6Lc-IMslAAAAAKX9UBvviX8VytSA8hEVw1-vQtK8"></div>
+                
                 <br>
 
 
               <button type="submit" id="submit"
                 class="h-12 bg-gradient-to-r from-blue-500 via-green-600 to-orange-500 mt-4 text-sm font-bold text-center text-white rounded-lg p-2 mb-4 sm:w-auto hover:bg-blue-800 focus:ring-4 focus:outline-none">Send
                 the Message</button>
+                <input type="hidden" id="recaptcha-token" name="recaptcha-token">
 
             </form>
 
@@ -392,34 +367,14 @@ document.addEventListener('DOMContentLoaded', function() {
 
   </div>
 
-<script src="https://www.google.com/recaptcha/api.js"></script>
+<script src="https://www.google.com/recaptcha/api.js?render=6LcfPuolAAAAAAfz3K8UGu54jU9CapUQ-k5YDbLa"></script>
+
 <script>
-  document.querySelector('#submit').addEventListener('click', function(e) {
-  e.preventDefault(); // prevent the form from submitting normally
-
-  var recaptchaResponse = grecaptcha.getResponse();
-  if (recaptchaResponse === '') {
-    alert('Please complete the reCAPTCHA');
-    return false;
-  }
-
-  // submit the form data to Google Sheets using fetch()
-  fetch('https://script.google.com/macros/s/AKfycbzJq0u65tV5y5NCDy7W8zdYjO27LgO-TOTxM2FV8Hv_ljK_Bys/exec', {
-    method: 'POST',
-    body: new FormData(document.querySelector('#contact')),
-  })
-  .then(response => {
-    alert('Form submitted successfully');
-    // reset the form
-    document.querySelector('#contact').reset();
-    grecaptcha.reset(); // reset the reCAPTCHA
-  })
-  .catch(error => {
-    alert('There was a problem submitting the form');
-    console.error(error);
+  grecaptcha.ready(function() {
+  grecaptcha.execute('6LcfPuolAAAAAAfz3K8UGu54jU9CapUQ-k5YDbLa', {action: '[action_name]'}).then(function(token) {
+    // Send the token to your server to verify the user's response.
   });
 });
-
 
 </script>
 
