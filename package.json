@@ -13,6 +13,7 @@
   "author": "Sanjeev@aadhunique.com",
   "license": "ISC",
   "dependencies": {
-    "gulp": "^4.0.2"
+    "gulp": "^4.0.2",
+    "mysql2": "^3.3.0"
   }
 }
